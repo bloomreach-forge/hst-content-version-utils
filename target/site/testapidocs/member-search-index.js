@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"org.onehippo.forge.hst.version.util","c":"FrozenNodeUtilsTest","l":"before()"},{"p":"org.onehippo.forge.hst.version.util","c":"FrozenNodeUtilsTest","l":"FrozenNodeUtilsTest()","url":"%3Cinit%3E()"},{"p":"org.onehippo.forge.hst.version.util","c":"FrozenNodeUtilsTest","l":"testPretendNotFrozen()"}]

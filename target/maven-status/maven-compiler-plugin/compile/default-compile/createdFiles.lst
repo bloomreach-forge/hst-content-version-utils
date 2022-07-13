@@ -1,8 +1,0 @@
-org/onehippo/forge/hst/version/util/JcrVersionUtils.class
-org/onehippo/forge/hst/version/util/HippoBeanVersionUtils.class
-org/onehippo/forge/hst/version/util/FrozenNodeUtils$1.class
-org/onehippo/forge/hst/version/util/NonFrozenPretenderNode.class
-org/onehippo/forge/hst/version/util/FrozenNodeUtils$EmptyNodeIterator.class
-org/onehippo/forge/hst/version/util/NonFrozenPretenderHippoNode.class
-org/onehippo/forge/hst/version/util/FrozenNodeUtils$2.class
-org/onehippo/forge/hst/version/util/FrozenNodeUtils.class
