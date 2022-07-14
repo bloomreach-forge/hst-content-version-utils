@@ -37,7 +37,7 @@
     <hippo.cms.locales>nl,de,fr,es,zh</hippo.cms.locales>
     <buildNumber>${maven.build.timestamp}</buildNumber>
     <hippo.hst.version>15.0.0</hippo.hst.version>
-    <lib.junit.version>4.8.2</lib.junit.version>
+    <lib.junit.version>4.13.1</lib.junit.version>
     <hst.version.util>2.0.0-SNAPSHOT</hst.version.util>
   </properties>
   <url/>
