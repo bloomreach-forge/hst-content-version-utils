@@ -31,7 +31,8 @@
 
     <javax.jcr.version>2.0</javax.jcr.version>
 
-    <jackrabbit.version>2.7.0</jackrabbit.version>
+    <!-- from release pom -->
+    <hippo.jackrabbit.version>2.21.6-h3</hippo.jackrabbit.version>
 
     <hippo.repository.version>15.0.0</hippo.repository.version>
     <hippo.hst.version>15.0.0</hippo.hst.version>
@@ -137,7 +138,7 @@
     <dependency>
       <groupId>org.apache.jackrabbit</groupId>
       <artifactId>jackrabbit-jcr-commons</artifactId>
-      <version>${jackrabbit.version}</version>
+      <version>${hippo.jackrabbit.version}</version>
       <scope>provided</scope>
     </dependency>
 
