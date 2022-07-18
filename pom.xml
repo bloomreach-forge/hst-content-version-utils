@@ -102,11 +102,6 @@
     <url>https://issues.onehippo.com/browse/HIPFORGE</url>
   </issueManagement>
 
-  <ciManagement>
-    <system>Travis CI</system>
-    <url>https://travis-ci.org/bloomreach-forge/hst-content-version-utils</url>
-  </ciManagement>
-
   <distributionManagement>
     <repository>
       <name>Hippo Maven 2 Forge Repository</name>
@@ -119,7 +114,7 @@
   <repositories>
     <repository>
       <id>hippo</id>
-      <name>Hippo maven 2 repository.</name>
+      <name>Hippo Maven 2 Repository.</name>
       <url>https://maven.onehippo.com/maven2/</url>
     </repository>
     <repository>
