@@ -23,7 +23,6 @@
     <version>15.1.0</version>
   </parent>
 
-  <packaging>pom</packaging>
   <name>HST Content Version Utils</name>
   <description>HST Content Version Utils</description>
   <groupId>org.onehippo.forge.hst-versionutil</groupId>
