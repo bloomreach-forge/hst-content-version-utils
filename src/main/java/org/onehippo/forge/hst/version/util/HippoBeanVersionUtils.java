@@ -1,5 +1,5 @@
 /*
- *  Copyright 2015-2015 Hippo B.V. (http://www.onehippo.com)
+ *  Copyright 2015-2022 Bloomreach B.V. (http://www.bloomreach.com)
  * 
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,10 +26,8 @@ import javax.jcr.Session;
 import javax.jcr.version.Version;
 
 import org.hippoecm.hst.container.RequestContextProvider;
-import org.hippoecm.hst.content.beans.NodeAware;
 import org.hippoecm.hst.content.beans.manager.ObjectBeanManager;
 import org.hippoecm.hst.content.beans.manager.ObjectConverter;
-import org.hippoecm.hst.content.beans.manager.ObjectConverterAware;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.site.HstServices;
@@ -47,7 +45,7 @@ import org.slf4j.LoggerFactory;
  */
 public class HippoBeanVersionUtils {
 
-    private static Logger log = LoggerFactory.getLogger(HippoBeanVersionUtils.class);
+    private static final Logger log = LoggerFactory.getLogger(HippoBeanVersionUtils.class);
 
     private HippoBeanVersionUtils() {
     }
@@ -90,39 +88,25 @@ public class HippoBeanVersionUtils {
 
                 if (versionableNode != null) {
                     List<Version> linearVersions = JcrVersionUtils.getAllLinearVersions(versionableNode);
-                    Version version = JcrVersionUtils.getVersionAsOf(versionableNode, linearVersions, asOf);
-
+                    Version version = JcrVersionUtils.getVersionAsOf(linearVersions, asOf);
                     if (version != null) {
                         if (JcrVersionUtils.ROOT_VERSION_NAME.equals(version.getName())) {
                             if (linearVersions.size() == 1) {
                                 // there's no versions yet.. so simply fallback to the original document at the handle path.
                                 ObjectBeanManager obm = requestContext.getObjectBeanManager();
                                 versionedBean = (T) obm.getObject(canonicalHandlePath);
-                            } else {
-                                // New version has probably started after the initial publication by user.
-                                // In this case, we cannot assume the root version to be the same of the current live variant.
-                                // So, sorry, but we have to return null.. :(
-                                versionedBean = null;
                             }
                         } else {
                             final Node frozenNode = version.getFrozenNode();
                             final NonFrozenPretenderNode nonFrozenPretender =
                                 FrozenNodeUtils.getNonFrozenPretenderNode(frozenNode, version.getCreated(), asOf);
-                            versionedBean = documentBeanClass.newInstance();
-
-                            if (versionedBean instanceof NodeAware) {
-                                ((NodeAware) versionedBean).setNode(nonFrozenPretender);
-                            }
-
-                            if (versionedBean instanceof ObjectConverterAware) {
-                                ((ObjectConverterAware) versionedBean).setObjectConverter(objectConverter);
-                            }
+                            versionedBean = documentBeanClass.getDeclaredConstructor().newInstance();
+                            versionedBean.setNode(nonFrozenPretender);
+                            versionedBean.setObjectConverter(objectConverter);
                         }
                     }
                 }
             }
-        } catch (RepositoryException e) {
-            log.error("Failed to retrieve versioned document.", e);
         } catch (Exception e) {
             log.error("Failed to retrieve versioned document.", e);
         } finally {

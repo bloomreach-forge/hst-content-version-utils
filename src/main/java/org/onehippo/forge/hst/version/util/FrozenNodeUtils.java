@@ -1,5 +1,5 @@
 /*
- *  Copyright 2015-2018 Hippo B.V. (http://www.onehippo.com)
+ *  Copyright 2015-2022 Bloomreach B.V. (http://www.bloomreach.com)
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package org.onehippo.forge.hst.version.util;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -83,18 +84,15 @@ public final class FrozenNodeUtils {
 
         ProxyFactory proxyFactory = new ProxyFactory();
 
-        final Interceptor primaryNodeTypeInterceptor = new Interceptor() {
-            @Override
-            public Object intercept(Invocation invocation) throws Throwable {
-                final Method method = invocation.getMethod();
-                final String methodName = method.getName();
+        final Interceptor primaryNodeTypeInterceptor = invocation -> {
+            final Method method = invocation.getMethod();
+            final String methodName = method.getName();
 
-                if ("getName".equals(methodName)) {
-                    return frozenNode.getProperty("jcr:frozenPrimaryType").getString();
-                }
-
-                return invocation.proceed();
+            if ("getName".equals(methodName)) {
+                return frozenNode.getProperty("jcr:frozenPrimaryType").getString();
             }
+
+            return invocation.proceed();
         };
 
         final NodeType primaryNodeTypeProxy =
@@ -114,7 +112,7 @@ public final class FrozenNodeUtils {
                     if ("getPrimaryNodeType".equals(methodName)) {
                         return primaryNodeTypeProxy;
                     } else if ("isNodeType".equals(methodName)) {
-                        return proxyIsNodeType(frozenNode, created, asOf, (String) arguments[0]);
+                        return proxyIsNodeType(frozenNode, (String) arguments[0]);
                     } else if ("getNode".equals(methodName)) {
                         return proxyGetNode(frozenNode, created, asOf, (String) arguments[0]);
                     } else if ("getNodes".equals(methodName)) {
@@ -165,35 +163,28 @@ public final class FrozenNodeUtils {
         return pretenderNode;
     }
 
-    private static boolean proxyIsNodeType(final Node frozenNode, final Calendar created, final Calendar asOf, final String nodeType) throws RepositoryException {
+    private static boolean proxyIsNodeType(final Node frozenNode, final String nodeType) throws RepositoryException {
         if (frozenNode.isNodeType(nodeType)) {
             return true;
         }
 
         String frozenType = frozenNode.getProperty("jcr:frozenPrimaryType").getString();
-
         if (nodeType.equals(frozenType)) {
             return true;
         }
 
-        for (NodeType mixinType : frozenNode.getMixinNodeTypes()) {
-            frozenType = mixinType.getName();
-
-            if (nodeType.equals(frozenType)) {
-                return true;
-            }
-        }
-
-        return false;
+        NodeType[] mixinNodeTypes = frozenNode.getMixinNodeTypes();
+        return Arrays.stream(mixinNodeTypes).anyMatch(mixin -> nodeType.equals(mixin.getName()));
     }
 
-    private static Node proxyGetNode(final Node frozenNode, final Calendar created, final Calendar asOf, final String relPath) throws RepositoryException {
+    private static Node proxyGetNode(final Node frozenNode, final Calendar created, final Calendar asOf, final String relPath)
+            throws RepositoryException {
         Node childFrozenNode = frozenNode.getNode(relPath);
-        Node pretendingChild = getNonFrozenPretenderNode(childFrozenNode, created, asOf);
-        return pretendingChild;
+        return getNonFrozenPretenderNode(childFrozenNode, created, asOf);
     }
 
-    private static NodeIterator proxyGetNodes(final Node frozenNode, final Calendar created, final Calendar asOf) throws RepositoryException {
+    private static NodeIterator proxyGetNodes(final Node frozenNode, final Calendar created, final Calendar asOf)
+            throws RepositoryException {
         List<Node> childNodes = new LinkedList<>();
         Node childNode;
 
@@ -209,27 +200,12 @@ public final class FrozenNodeUtils {
         return new NodeIteratorAdapter(childNodes);
     }
 
-    private static NodeIterator proxyGetNodes(final Node frozenNode, final Calendar created, final Calendar asOf, final String namePattern) throws RepositoryException {
+    private static NodeIterator proxyGetNodes(final Node frozenNode, final Calendar created, final Calendar asOf, final String... namePattern)
+            throws RepositoryException {
         List<Node> childNodes = new LinkedList<>();
         Node childNode;
 
         for (NodeIterator nodeIt = frozenNode.getNodes(namePattern); nodeIt.hasNext(); ) {
-            childNode = nodeIt.nextNode();
-
-            if (childNode != null) {
-                childNode = getNonFrozenPretenderNode(childNode, created, asOf);
-                childNodes.add(childNode);
-            }
-        }
-
-        return new NodeIteratorAdapter(childNodes);
-    }
-
-    private static NodeIterator proxyGetNodes(final Node frozenNode, final Calendar created, final Calendar asOf, final String[] nameGlobs) throws RepositoryException {
-        List<Node> childNodes = new LinkedList<>();
-        Node childNode;
-
-        for (NodeIterator nodeIt = frozenNode.getNodes(nameGlobs); nodeIt.hasNext(); ) {
             childNode = nodeIt.nextNode();
 
             if (childNode != null) {

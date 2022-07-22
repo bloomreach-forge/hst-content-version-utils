@@ -1,12 +1,10 @@
-[![Build Status](https://travis-ci.org/bloomreach-forge/hst-content-version-utils.svg?branch=develop)](https://travis-ci.org/bloomreach-forge/hst-content-version-utils)
-
 # HST Content Version Utils
 
 This project provides utilities to retrieve versioned, frozen node content using HST Content Beans.
 
 # Documentation (Local)
 
-The documentation can generated locally by this command:
+The documentation can be generated locally by this command:
 
 ```bash
 $ mvn clean install
