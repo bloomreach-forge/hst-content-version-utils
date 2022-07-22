@@ -31,7 +31,7 @@
   <url>https://bloomreach-forge.github.io/hst-content-version-utils/</url>
 
   <properties>
-    <hippo.jackrabbit.version>2.21.10</hippo.jackrabbit.version>
+    <hippo.jackrabbit.version>2.21.6-h3</hippo.jackrabbit.version>
     <plugin.jxr.version>2.3</plugin.jxr.version>
   </properties>
 
