@@ -9,7 +9,7 @@
 <div id="overview"><a href="../../../../../../../../target/site/testapidocs/org/onehippo/forge/hst/version/util/FrozenNodeUtilsTest.html">View Javadoc</a></div><pre>
 
 <a class="jxr_linenumber" name="1" href="#1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="2" href="#2">2</a>   <em class="jxr_comment"> *  Copyright 2015-2015 Hippo B.V. (<a href="http://www.onehippo.com)" target="alexandria_uri">http://www.onehippo.com)</a></em>
+<a class="jxr_linenumber" name="2" href="#2">2</a>   <em class="jxr_comment"> *  Copyright 2015-2022 Bloomreach B.V. (<a href="http://www.bloomreach.com)" target="alexandria_uri">http://www.bloomreach.com)</a></em>
 <a class="jxr_linenumber" name="3" href="#3">3</a>   <em class="jxr_comment"> * </em>
 <a class="jxr_linenumber" name="4" href="#4">4</a>   <em class="jxr_comment"> *  Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="5" href="#5">5</a>   <em class="jxr_comment"> *  you may not use this file except in compliance with the License.</em>
@@ -44,11 +44,11 @@
 <a class="jxr_linenumber" name="34" href="#34">34</a>   
 <a class="jxr_linenumber" name="35" href="#35">35</a>      @Before
 <a class="jxr_linenumber" name="36" href="#36">36</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> before() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="37" href="#37">37</a>          MockNode versionStorage = MockNode.root().addMockNode(<span class="jxr_string">"versionStorage1"</span>, <span class="jxr_string">"rep:versionStorage"</span>);
-<a class="jxr_linenumber" name="38" href="#38">38</a>          MockNode versionHistory = versionStorage.addMockNode(<span class="jxr_string">"versionHistory1"</span>, <span class="jxr_string">"nt:versionHistory"</span>);
-<a class="jxr_linenumber" name="39" href="#39">39</a>          MockNode version = versionHistory.addMockNode(<span class="jxr_string">"1.0"</span>, <span class="jxr_string">"nt:version"</span>);
+<a class="jxr_linenumber" name="37" href="#37">37</a>          MockNode versionStorage = MockNode.root().addNode(<span class="jxr_string">"versionStorage1"</span>, <span class="jxr_string">"rep:versionStorage"</span>);
+<a class="jxr_linenumber" name="38" href="#38">38</a>          MockNode versionHistory = versionStorage.addNode(<span class="jxr_string">"versionHistory1"</span>, <span class="jxr_string">"nt:versionHistory"</span>);
+<a class="jxr_linenumber" name="39" href="#39">39</a>          MockNode version = versionHistory.addNode(<span class="jxr_string">"1.0"</span>, <span class="jxr_string">"nt:version"</span>);
 <a class="jxr_linenumber" name="40" href="#40">40</a>  
-<a class="jxr_linenumber" name="41" href="#41">41</a>          frozenNode = version.addMockNode(<span class="jxr_string">"jcr:frozenNode"</span>, <span class="jxr_string">"nt:frozenNode"</span>);
+<a class="jxr_linenumber" name="41" href="#41">41</a>          frozenNode = version.addNode(<span class="jxr_string">"jcr:frozenNode"</span>, <span class="jxr_string">"nt:frozenNode"</span>);
 <a class="jxr_linenumber" name="42" href="#42">42</a>          frozenNode.setProperty(<span class="jxr_string">"jcr:frozenPrimaryType"</span>, <span class="jxr_string">"ns1:service"</span>);
 <a class="jxr_linenumber" name="43" href="#43">43</a>          frozenNode.setProperty(<span class="jxr_string">"ns1:title"</span>, <span class="jxr_string">"MRI"</span>);
 <a class="jxr_linenumber" name="44" href="#44">44</a>          frozenNode.setProperty(<span class="jxr_string">"ns1:variableid"</span>, <span class="jxr_string">"mri"</span>);
@@ -57,7 +57,7 @@
 <a class="jxr_linenumber" name="47" href="#47">47</a>          assertFalse(frozenNode.isNodeType(<span class="jxr_string">"ns1:service"</span>));
 <a class="jxr_linenumber" name="48" href="#48">48</a>          assertEquals(<span class="jxr_string">"nt:frozenNode"</span>, frozenNode.getPrimaryNodeType().getName());
 <a class="jxr_linenumber" name="49" href="#49">49</a>  
-<a class="jxr_linenumber" name="50" href="#50">50</a>          MockNode description = frozenNode.addMockNode(<span class="jxr_string">"ns1:description"</span>, <span class="jxr_string">"nt:frozenNode"</span>);
+<a class="jxr_linenumber" name="50" href="#50">50</a>          MockNode description = frozenNode.addNode(<span class="jxr_string">"ns1:description"</span>, <span class="jxr_string">"nt:frozenNode"</span>);
 <a class="jxr_linenumber" name="51" href="#51">51</a>          description.setProperty(<span class="jxr_string">"jcr:frozenPrimaryType"</span>, <span class="jxr_string">"hippostd:html"</span>);
 <a class="jxr_linenumber" name="52" href="#52">52</a>          description.setProperty(<span class="jxr_string">"hippostd:content"</span>, <span class="jxr_string">"&lt;p&gt;Magnetic Resonance imaging&lt;/p&gt;"</span>);
 <a class="jxr_linenumber" name="53" href="#53">53</a>  
