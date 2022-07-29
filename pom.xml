@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2015-2018 Hippo B.V. (http://www.onehippo.com)
+  Copyright 2015-2022 Bloomreach B.V. (http://www.bloomreach.com)
  
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -17,55 +17,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>org.onehippo.cms7</groupId>
+    <artifactId>hippo-cms7-project</artifactId>
+    <version>15.1.0</version>
+  </parent>
+
   <name>HST Content Version Utils</name>
   <description>HST Content Version Utils</description>
   <groupId>org.onehippo.forge.hst-versionutil</groupId>
   <artifactId>hst-versionutil</artifactId>
-  <version>1.0.0</version>
+  <version>2.0.0</version>
   <url>https://bloomreach-forge.github.io/hst-content-version-utils/</url>
 
   <properties>
-
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.build.javaVersion>1.8</project.build.javaVersion>
-
-    <javax.jcr.version>2.0</javax.jcr.version>
-
-    <jackrabbit.version>2.7.0</jackrabbit.version>
-
-    <hippo.repository.version>4.1.0</hippo.repository.version>
-    <hippo.hst.version>4.1.0</hippo.hst.version>
-
-    <commons-lang.version>2.6</commons-lang.version>
-    <commons-proxy.version>1.0</commons-proxy.version>
-
-    <lib.junit.version>4.8.2</lib.junit.version>
-    <lib.easymock.version>3.0</lib.easymock.version>
-    <lib.slf4j.version>1.7.6</lib.slf4j.version>
-    <lib.log4j.version>1.2.17</lib.log4j.version>
-
-    <plugin.compiler.version>3.1</plugin.compiler.version>
-    <plugin.clean.version>2.5</plugin.clean.version>
-    <plugin.deploy.version>2.8.1</plugin.deploy.version>
-    <plugin.install.version>2.5.1</plugin.install.version>
-    <plugin.jar.version>2.4</plugin.jar.version>
-    <plugin.javadoc.version>2.9.1</plugin.javadoc.version>
+    <hippo.jackrabbit.version>2.21.6-h3</hippo.jackrabbit.version>
     <plugin.jxr.version>2.3</plugin.jxr.version>
-    <plugin.pmd.version>3.1</plugin.pmd.version>
-    <plugin.project-info-reports.version>2.7</plugin.project-info-reports.version>
-    <plugin.release.version>2.5</plugin.release.version>
-    <plugin.resources.version>2.6</plugin.resources.version>
-    <plugin.site.version>3.6</plugin.site.version>
-    <plugin.source.version>2.2.1</plugin.source.version>
-    <plugin.surefire.version>2.17</plugin.surefire.version>
-    <plugin.surefire-report.version>2.17</plugin.surefire-report.version>
-
-    <plugin.checkstyle.version>2.6</plugin.checkstyle.version>
-    <plugin.cobertura.version>2.4</plugin.cobertura.version>
-    <plugin.findbugs.version>2.3.2</plugin.findbugs.version>
-
-    <extension.wagon-svn.version>1.9</extension.wagon-svn.version>
-
   </properties>
 
   <licenses>
@@ -102,11 +69,6 @@
     <url>https://issues.onehippo.com/browse/HIPFORGE</url>
   </issueManagement>
 
-  <ciManagement>
-    <system>Travis CI</system>
-    <url>https://travis-ci.org/bloomreach-forge/hst-content-version-utils</url>
-  </ciManagement>
-
   <distributionManagement>
     <repository>
       <name>Hippo Maven 2 Forge Repository</name>
@@ -119,72 +81,54 @@
   <repositories>
     <repository>
       <id>hippo</id>
-      <name>Hippo maven 2 repository.</name>
-      <url>http://maven.onehippo.com/maven2/</url>
+      <name>Hippo Maven 2 Repository.</name>
+      <url>https://maven.onehippo.com/maven2/</url>
     </repository>
     <repository>
       <id>hippo-maven2-forge</id>
       <name>Hippo Maven 2 Forge repository</name>
-      <url>http://maven.onehippo.com/maven2-forge/</url>
+      <url>https://maven.onehippo.com/maven2-forge/</url>
       <snapshots />
     </repository>
   </repositories>
 
   <dependencies>
-
-    <dependency>
-      <groupId>javax.jcr</groupId>
-      <artifactId>jcr</artifactId>
-      <version>${javax.jcr.version}</version>
-      <scope>provided</scope>
-    </dependency>
-
     <dependency>
       <groupId>org.apache.jackrabbit</groupId>
       <artifactId>jackrabbit-jcr-commons</artifactId>
-      <version>${jackrabbit.version}</version>
+      <version>${hippo.jackrabbit.version}</version>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>org.onehippo.cms7</groupId>
       <artifactId>hippo-repository-api</artifactId>
-      <version>${hippo.repository.version}</version>
+      <version>${hippo.release.version}</version>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.onehippo.cms7</groupId>
       <artifactId>hippo-repository-builtin</artifactId>
-      <version>${hippo.repository.version}</version>
+      <version>${hippo.release.version}</version>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.onehippo.cms7.hst</groupId>
       <artifactId>hst-api</artifactId>
-      <version>${hippo.hst.version}</version>
+      <version>${hippo.release.version}</version>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.onehippo.cms7.hst</groupId>
       <artifactId>hst-commons</artifactId>
-      <version>${hippo.hst.version}</version>
+      <version>${hippo.release.version}</version>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>${lib.slf4j.version}</version>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-lang</groupId>
-      <artifactId>commons-lang</artifactId>
-      <version>${commons-lang.version}</version>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons-lang3.version}</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
@@ -204,51 +148,13 @@
         </exclusion>
       </exclusions>
     </dependency>
-
     <!-- TEST DEPENDENCIES -->
-
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>${lib.slf4j.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <version>${lib.slf4j.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>${lib.log4j.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${lib.junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.easymock</groupId>
-      <artifactId>easymock</artifactId>
-      <version>${lib.easymock.version}</version>
-      <scope>test</scope>
-    </dependency>
-
     <dependency>
       <groupId>org.onehippo.cms7</groupId>
       <artifactId>hippo-repository-testutils</artifactId>
-      <version>${hippo.repository.version}</version>
+      <version>${hippo.release.version}</version>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 
   <reporting>
@@ -256,99 +162,18 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>${plugin.project-info-reports.version}</version>
+        <version>${maven.plugin.project-info.version}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
         <version>${plugin.jxr.version}</version>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>${plugin.javadoc.version}</version>
-        <configuration>
-          <encoding>${project.build.sourceEncoding}</encoding>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>${plugin.surefire-report.version}</version>
-      </plugin>
     </plugins>
   </reporting>
 
   <build>
-
     <defaultGoal>package</defaultGoal>
-
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${plugin.compiler.version}</version>
-        <configuration>
-          <source>${project.build.javaVersion}</source>
-          <target>${project.build.javaVersion}</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-clean-plugin</artifactId>
-        <version>${plugin.clean.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>${plugin.install.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>${plugin.deploy.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>${plugin.jar.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${plugin.surefire.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>${plugin.resources.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>${plugin.site.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <version>${plugin.release.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>${plugin.source.version}</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>jar-no-fork</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-
   </build>
 
   <profiles>
@@ -360,7 +185,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-site-plugin</artifactId>
-            <version>${plugin.site.version}</version>
+            <version>${maven.plugin.site.version}</version>
             <configuration>
               <outputDirectory>docs</outputDirectory>
             </configuration>

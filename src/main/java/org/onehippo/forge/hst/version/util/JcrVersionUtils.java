@@ -1,5 +1,5 @@
 /*
- *  Copyright 2015-2015 Hippo B.V. (http://www.onehippo.com)
+ *  Copyright 2015-2022 Bloomreach B.V. (http://www.bloomreach.com)
  * 
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import javax.jcr.version.VersionHistory;
 import javax.jcr.version.VersionIterator;
 import javax.jcr.version.VersionManager;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.HippoNodeType;
 import org.hippoecm.repository.util.JcrUtils;
@@ -85,12 +85,11 @@ public class JcrVersionUtils {
 
     /**
      * Finds the root version of the {@code versionableNode} from the given {@code linearVersions}.
-     * @param versionableNode versionable node (type of mix:versionable)
      * @param linearVersions linear versions list
      * @return the root version of the {@code versionableNode}
      * @throws RepositoryException if unexpected repository exception occurs
      */
-    public static Version getRootVersion(final Node versionableNode, final List<Version> linearVersions)
+    public static Version getRootVersion(final List<Version> linearVersions)
             throws RepositoryException {
         Version rootVersion = null;
 
@@ -108,19 +107,18 @@ public class JcrVersionUtils {
      * Finds the latest version of the {@code versionableNode} as of {@code asOf} datetime
      * from the given {@code linearVersions}.
      * If {@code asOf} is null, then returns the latest version.
-     * @param versionableNode versionable node (type of mix:versionable)
      * @param linearVersions linear versions list
      * @param asOf {@code asOf} datetime
      * @return the latest version of the {@code versionableNode} as of {@code asOf} datetime
      *         If {@code asOf} is null, then returns the latest version.
      * @throws RepositoryException if unexpected repository exception occurs
      */
-    public static Version getVersionAsOf(final Node versionableNode, final List<Version> linearVersions,
-            final Calendar asOf) throws RepositoryException {
+    public static Version getVersionAsOf(final List<Version> linearVersions, final Calendar asOf)
+            throws RepositoryException {
         Version asOfVersion = null;
 
         if (asOf == null) {
-            return getRootVersion(versionableNode, linearVersions);
+            return getRootVersion(linearVersions);
         } else {
             for (Version version : linearVersions) {
                 if (hasLiveFrozenNode(version)) {
