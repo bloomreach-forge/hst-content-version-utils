@@ -3,7 +3,7 @@
   "-//Apache Software Foundation//DTD XDOC 1.0//EN"
   "http://maven.apache.org/dtd/xdoc_1_0.dtd">
 <!--
-    Copyright 2015 Hippo
+    Copyright 2015-2022 Bloomreach
 
     Licensed under the Apache License, Version 2.0 (the  "License");
     you may not use this file except in compliance with the License.
@@ -25,7 +25,8 @@
     <section name="Installing HST Content Version Utils">
       <subsection name="Add Dependencies">
         <p>
-          Make sure you have the forge Maven2 repository reference and dependency definition in the root pom.xml of your project.
+          Make sure you have the Forge Maven 2 repository reference and dependency definition in the root pom.xml of
+          your project.
         </p>
         <div class="brush: xml">
           <source><![CDATA[
@@ -34,9 +35,9 @@
       <!-- SNIP -->
 
       <repository>
-        <id>hippo-maven2-forge</id>
-        <name>Hippo Maven 2 Forge repository</name>
-        <url>http://maven.onehippo.com/maven2-forge/</url>
+        <id>bloomreach-maven2-forge</id>
+        <name>Bloomreach Maven 2 Forge repository</name>
+        <url>https://maven.bloomreach.com/repository/maven2-forge</url>
         <snapshots />
       </repository>
 
@@ -72,7 +73,7 @@
     ]]></source>
         </div>
         <p>
-          And add the following dependency reference into your Hippo SITE Web Application module subproject.
+          And add the following dependency reference into your SITE web application module subproject.
         </p>
         <div class="brush: xml">
           <source><![CDATA[
