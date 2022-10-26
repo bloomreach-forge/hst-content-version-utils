@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2015-2022 Bloomreach B.V. (http://www.bloomreach.com)
+  Copyright 2015-2022 Bloomreach
  
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -47,8 +47,7 @@
     <developer>
       <name>Woonsan Ko</name>
       <id>wko</id>
-      <email>w.ko @ onehippo . com</email>
-      <organization>Hippo</organization>
+      <organization>Bloomreach</organization>
       <roles>
         <role>Project Lead</role>
         <role>Java Developer</role>
@@ -71,24 +70,18 @@
 
   <distributionManagement>
     <repository>
-      <name>Hippo Maven 2 Forge Repository</name>
-      <id>hippo-maven2-forge</id>
-      <url>https://maven.onehippo.com/content/repositories/forge-releases/</url>
+      <name>Bloomreach Maven 2 Forge Repository</name>
+      <id>bloomreach-maven2-forge</id>
+      <url>https://maven.bloomreach.com/content/repositories/forge-releases/</url>
       <uniqueVersion>false</uniqueVersion>
     </repository>
   </distributionManagement>
 
   <repositories>
     <repository>
-      <id>hippo</id>
-      <name>Hippo Maven 2 Repository.</name>
-      <url>https://maven.onehippo.com/maven2/</url>
-    </repository>
-    <repository>
-      <id>hippo-maven2-forge</id>
-      <name>Hippo Maven 2 Forge repository</name>
-      <url>https://maven.onehippo.com/maven2-forge/</url>
-      <snapshots />
+      <id>bloomreach-maven2</id>
+      <name>Bloomreach Maven 2 Repository</name>
+      <url>https://maven.bloomreach.com/repository/maven2</url>
     </repository>
   </repositories>
 
