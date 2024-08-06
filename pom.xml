@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2015-2022 Bloomreach
+  Copyright 2015-2024 Bloomreach
  
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -20,19 +20,18 @@
   <parent>
     <groupId>org.onehippo.cms7</groupId>
     <artifactId>hippo-cms7-project</artifactId>
-    <version>15.1.0</version>
+    <version>16.0.0</version>
   </parent>
 
   <name>HST Content Version Utils</name>
   <description>HST Content Version Utils</description>
   <groupId>org.onehippo.forge.hst-versionutil</groupId>
   <artifactId>hst-versionutil</artifactId>
-  <version>2.0.0</version>
+  <version>3.0.0</version>
   <url>https://bloomreach-forge.github.io/hst-content-version-utils/</url>
 
   <properties>
-    <hippo.jackrabbit.version>2.21.6-h3</hippo.jackrabbit.version>
-    <plugin.jxr.version>2.3</plugin.jxr.version>
+    <plugin.jxr.version>3.4.0</plugin.jxr.version>
   </properties>
 
   <licenses>
@@ -89,7 +88,6 @@
     <dependency>
       <groupId>org.apache.jackrabbit</groupId>
       <artifactId>jackrabbit-jcr-commons</artifactId>
-      <version>${hippo.jackrabbit.version}</version>
       <scope>provided</scope>
     </dependency>
 
@@ -119,9 +117,8 @@
     </dependency>
 
     <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>${commons-lang3.version}</version>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
@@ -133,7 +130,6 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-proxy</artifactId>
-      <version>${commons-proxy.version}</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
