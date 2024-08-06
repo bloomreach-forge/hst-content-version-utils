@@ -30,6 +30,10 @@
           <th>Bloomreach XM Release version</th>
         </tr>
         <tr>
+          <td>3.x</td>
+          <td>16.x</td>
+        </tr>
+        <tr>
           <td>2.x</td>
           <td>15.x</td>
         </tr>
@@ -48,6 +52,12 @@
       </table>
     </section>
     <section name="Release Notes">
+      <subsection name="3.0.0">
+        <p class="smallinfo">Release Date: 6 August 2024</p>
+        <ul>
+          <li>Compliant with Bloomreach Experience Manager 16.</li>
+        </ul>
+      </subsection>
       <subsection name="2.0.0">
         <p class="smallinfo">Release Date: 29 July 2022</p>
         <ul>
